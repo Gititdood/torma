@@ -1,0 +1,10 @@
+extends ./layout.jade
+
+block content
+  if(!user)
+    h1 Hello World!
+  else
+    h1 Hello, #{user.username}
+    h2 Dynamic content
+      p {{dc || 'will be displayed here, when you'}}
+      button(ng-click='loadDc()') click me
