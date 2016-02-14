@@ -2,7 +2,7 @@ extends ./layout.jade
 
 block content
   h1 Login
-  form(method='post')
+  form(method='post' action='/login')
     input(name='username' placeholder='Please enter username')
     input(name='password' placeholder='Please enter password' type='password')
     button Login

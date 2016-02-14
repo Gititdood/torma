@@ -6,7 +6,7 @@ function controller($scope) {
   console.log('Angular controller initialized');
   $scope.loadDc = function() {
     socket.emit('data');
-  }
+  };
   socket.on('data', function(data){
     $scope.dc = data;
     $scope.$apply();

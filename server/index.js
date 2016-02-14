@@ -2,10 +2,10 @@
 var express = require('express');
 var app = express();
 // Create a server separately
-var server = require('https').Server(app);
+var server = require('http').Server(app);
 
 // Serve static files http://expressjs.com/en/starter/static-files.html
-app.use(express.static('public'));
+app.use(express.static('client'));
 /*
   sidenote: since middlewares are executed progressively,
   it's best to put static file server at the top
@@ -25,9 +25,6 @@ app.use(cookieParser());
 
 
 // User Database
-var mongoose = require('mongoose');
-var mongodburl = 'mongodb://localhost/app';
-mongoose.connect(mongodburl);
 var User = require('./db/user');
 
 
@@ -35,9 +32,9 @@ var User = require('./db/user');
 var session = require('express-session');
 // A session store to store sessions in a database
 // Otherwise sessions are lost when you restart node app
-var MongoStore = require('connect-mongo')(session);
+var RedisStore = require('connect-redis')(session);
 var sessionSecret = 'unique phrase, like "keyboard cat"';
-var sessionStore = new MongoStore({ url: mongodburl });
+var sessionStore = new RedisStore();
 app.use(session({
   store: sessionStore,
   secret: sessionSecret,

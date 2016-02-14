@@ -17,9 +17,8 @@ router.get('/login', req =>
 
 router.post('/login', (req, res, next) => {
   var form = req.body;
-  User.findOne({ username: form.username }, function(err, user) {
+  User.findByUsername(form.username, function(err, user) {
     if (err) return next(err);
-    console.log('user:', user);
     if (!user) {
       // user does not exist. lets create and sign up
       user = new User({ username: form.username });
