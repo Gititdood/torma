@@ -100,7 +100,12 @@ io.on('connection', function(socket) {
   socket.join(user.id);
   console.log('Socket connection established with a client');
   socket.on('data', function(data) {
-    socket.emit('data', 'some random data');
+    socket.emit('data', {
+      hash: 'key',
+      one: 1,
+      two: 2,
+      three: 3,
+    });
   });
 });
 

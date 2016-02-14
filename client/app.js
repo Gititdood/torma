@@ -4,11 +4,12 @@ app.controller('app', controller);
 
 function controller($scope) {
   console.log('Angular controller initialized');
-  $scope.loadDc = function() {
+  $scope.loadData = function() {
     socket.emit('data');
   };
   socket.on('data', function(data){
-    $scope.dc = data;
+    console.log(data);
+    $scope.data = data;
     $scope.$apply();
   });
 }
