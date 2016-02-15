@@ -34,7 +34,9 @@ var session = require('express-session');
 // Otherwise sessions are lost when you restart node app
 var RedisStore = require('connect-redis')(session);
 var sessionSecret = 'unique phrase, like "keyboard cat"';
-var sessionStore = new RedisStore();
+var sessionStore = new RedisStore({
+  db: 1,
+});
 app.use(session({
   store: sessionStore,
   secret: sessionSecret,
