@@ -17,28 +17,30 @@ router.get('/login', req =>
 
 router.post('/login', (req, res, next) => {
   var form = req.body;
-  User.findByUsername(form.username, function(err, user) {
+  console.log(req.body.username);
+  User.findByUsername(req.body.username, function(err, user) {
     if (err) return next(err);
     if (!user) {
       // user does not exist. lets create and sign up
       user = new User({ username: form.username });
-      user.savePassword(form.password, function(err, user) {
+      user.savePassword(req.body.password, function(err, user) {
         if (err) return next(err);
         req.login(user, function(err) {
           if (err) return next(err);
-          res.send('login successful');
-          // or res.redirect('/');
+          //res.send('login successful');
+          // or 
+		  res.render('home');
         });
       });
     } else {
       // user exists
-      user.verifyPassword(form.password, function(err, res) {
+      user.verifyPassword(req.body.password, function(err, res) {
         if (err) return next(err);
         if (res !== true) return next(new Error('Incorrect password'));
         req.login(user, function(err) {
           if (err) return next(err);
-          res.send('login successful');
-          // or res.redirect('/');
+          //res.send('login successful');
+          res.render('home');
         });
       });
     }

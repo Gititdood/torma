@@ -1,10 +1,11 @@
 doctype html
 html(ng-app='app')
-  head
-    block title
-      title App
-  body(ng-controller='app')
-    block content
-    script(src='/socket.io/socket.io.js')
-    script(src='/assets/js/angular.min.js')
-    script(src='/app.js')
+	head
+		link(rel='stylesheet', href='/stylesheets/login.css')
+		block title
+		block ExtraHeader
+	body(ng-controller='app')
+		block content
+			script(src='/socket.io/socket.io.js')
+			script(src='/assets/js/angular.min.js')
+			script(src='/app.js')

@@ -1,6 +1,7 @@
 var socket = io.connect();
 var app = angular.module('app', []);
 app.controller('app', controller);
+app.set('view options', { pretty: true });
 
 function controller($scope) {
   console.log('Angular controller initialized');

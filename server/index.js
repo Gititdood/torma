@@ -4,6 +4,9 @@ var app = express();
 // Create a server separately
 var server = require('http').Server(app);
 
+// pretty maybe?
+app.locals.pretty = true;
+
 // Serve static files http://expressjs.com/en/starter/static-files.html
 app.use(express.static('client'));
 /*
@@ -84,6 +87,7 @@ app.use(function(req, res, next) {
 });
 // Catch all error handler
 app.use(function(err, req, res, next) {
+	//console.log(err, req, res)
   res.status(500).send('Server error: ' + err);
 });
 
