@@ -14,15 +14,20 @@ class User {
       throw new Error('Please remove the `.password` property and use `.savePassword(password)` (to save the hash) instead');
   }
   save(cb) {
+    console.log('Saving user');
     db.hmset('user:' + this.id, this, err => {
-      if (err) cb(err);
-      else cb(null, this);
+      if (err) return cb(err);
+      console.log('Use saved');
+      cb(null, this);
     });
   }
   savePassword(password, cb) {
+    console.log('Saving password');
     bcrypt.hash(password, 8, (err, hash) => {
-      if (err) cb(err);
-      else this.save(cb);
+      if (err) return cb(err);
+      this.hash = hash;
+      console.log('Hash saved');
+      this.save(cb);
     });
   }
   verifyPassword(password, cb) {
