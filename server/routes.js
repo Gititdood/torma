@@ -9,11 +9,11 @@ var User = require('./db/user');
 
 
 router.get('/', function(req, res) {
-  res.render('home');
+  res.render('home.jade');
 });
 
 router.get('/login', req =>
-  req.res.render('login'));
+  req.res.render('login.jade'));
 
 router.post('/login', (req, res, next) => {
   var form = req.body;
