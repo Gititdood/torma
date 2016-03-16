@@ -2,15 +2,18 @@ doctype html
 html(ng-app='app')
 	head
 		link(rel='stylesheet', href='/stylesheets/login.css')
+		script(src='js/jquery.js')
+		script(src='js/login/index.js')
+		script(src='js/login/prefixfree.min.js')
 		title Login
 
 	body(ng-controller='app')
 		.wrapper
 			form(id='loginForm' class='login' method='post' action='/login')
 				p.title Log in
-				input(id='username' name='username' type='text' placeholder='username' autofocus)
+				input(name='username' type='text' placeholder='username' autofocus)
 				i.fa.fa-user
-				input(id='password' name='password' type='text' placeholder='password')
+				input(name='password' type='text' placeholder='password')
 				i.fa.fa-key
 				button(id='login')
 					i.spinner
